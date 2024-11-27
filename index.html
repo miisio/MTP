@@ -22,16 +22,16 @@
     <!-- Sekcja dodawania osób -->
     <div id="add-person" class="add-form" style="display:none;">
       <h3>Dodaj Osobę</h3>
-      <input type="text" id="new-person-name" placeholder="Imię i nazwisko">
-      <input type="text" id="new-person-id" placeholder="Numer ID">
+      <input type="text" id="new-person-name" placeholder="Imię i nazwisko" required>
+      <input type="text" id="new-person-id" placeholder="Numer ID" required>
       <button onclick="addPerson()">Dodaj Osobę</button>
     </div>
     
     <!-- Sekcja dodawania pojazdów -->
     <div id="add-vehicle" class="add-form" style="display:none;">
       <h3>Dodaj Pojazd</h3>
-      <input type="text" id="new-vehicle-id" placeholder="Numer rejestracyjny">
-      <input type="text" id="new-vehicle-owner" placeholder="Właściciel pojazdu">
+      <input type="text" id="new-vehicle-id" placeholder="Numer rejestracyjny" required>
+      <input type="text" id="new-vehicle-owner" placeholder="Właściciel pojazdu" required>
       <button onclick="addVehicle()">Dodaj Pojazd</button>
     </div>
 
