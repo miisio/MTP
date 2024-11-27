@@ -3,6 +3,30 @@ let peopleDB = JSON.parse(localStorage.getItem('peopleDB')) || [];
 let vehicleDB = JSON.parse(localStorage.getItem('vehicleDB')) || [];
 let logs = JSON.parse(localStorage.getItem('logs')) || [];
 
+window.onload = function() {
+  renderData(); // Przy ładowaniu strony odśwież dane
+};
+
+// Renderowanie danych na stronie
+function renderData() {
+  // Renderowanie osób
+  const resultContainer = document.getElementById("result-container");
+  resultContainer.style.display = "none"; // Ukryj sekcję wyników wyszukiwania
+
+  // Renderowanie danych w logach
+  const logList = document.getElementById("logs");
+  logList.innerHTML = "";
+  logs.forEach(log => {
+    const li = document.createElement("li");
+    li.textContent = log;
+    logList.appendChild(li);
+  });
+
+  // Renderowanie listy osób w bazie danych
+  const peopleList = peopleDB.map(person => `${person.name} (ID: ${person.id})`).join("\n");
+  document.getElementById("result").textContent = peopleList || "Brak osób w bazie danych.";
+}
+
 function showSearch(type) {
   document.getElementById("people-search").style.display = "none";
   document.getElementById("vehicle-search").style.display = "none";
@@ -27,13 +51,7 @@ function showAdd(type) {
 
 function showLogs() {
   document.getElementById("logs-container").style.display = "block";
-  const logList = document.getElementById("logs");
-  logList.innerHTML = "";
-  logs.forEach(log => {
-    const li = document.createElement("li");
-    li.textContent = log;
-    logList.appendChild(li);
-  });
+  renderData();
 }
 
 function addPerson() {
@@ -48,6 +66,7 @@ function addPerson() {
     alert("Osoba dodana!");
     document.getElementById("new-person-name").value = '';
     document.getElementById("new-person-id").value = '';
+    renderData();
   }
 }
 
@@ -63,6 +82,7 @@ function addVehicle() {
     alert("Pojazd dodany!");
     document.getElementById("new-vehicle-id").value = '';
     document.getElementById("new-vehicle-owner").value = '';
+    renderData();
   }
 }
 
