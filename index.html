@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terminal Policyjny</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="terminal">
+    <div class="header">
+      <h1>Terminal Policyjny</h1>
+    </div>
+    <div class="menu">
+      <button onclick="showSearch('people')">Wyszukaj Osobę</button>
+      <button onclick="showSearch('vehicle')">Wyszukaj Pojazd</button>
+      <button onclick="showAdd('people')">Dodaj Osobę</button>
+      <button onclick="showAdd('vehicle')">Dodaj Pojazd</button>
+      <button onclick="showLogs()">Pokaż Logi</button>
+    </div>
+    
+    <!-- Sekcja dodawania osób -->
+    <div id="add-person" class="add-form" style="display:none;">
+      <h3>Dodaj Osobę</h3>
+      <input type="text" id="new-person-name" placeholder="Imię i nazwisko">
+      <input type="text" id="new-person-id" placeholder="Numer ID">
+      <button onclick="addPerson()">Dodaj Osobę</button>
+    </div>
+    
+    <!-- Sekcja dodawania pojazdów -->
+    <div id="add-vehicle" class="add-form" style="display:none;">
+      <h3>Dodaj Pojazd</h3>
+      <input type="text" id="new-vehicle-id" placeholder="Numer rejestracyjny">
+      <input type="text" id="new-vehicle-owner" placeholder="Właściciel pojazdu">
+      <button onclick="addVehicle()">Dodaj Pojazd</button>
+    </div>
+
+    <!-- Sekcja wyszukiwania -->
+    <div id="search-container" class="search-container">
+      <div id="people-search" class="search-form" style="display:none;">
+        <input type="text" id="person-name" placeholder="Imię i nazwisko">
+        <button onclick="searchPerson()">Szukaj</button>
+      </div>
+      <div id="vehicle-search" class="search-form" style="display:none;">
+        <input type="text" id="vehicle-id" placeholder="Numer rejestracyjny">
+        <button onclick="searchVehicle()">Szukaj</button>
+      </div>
+    </div>
+
+    <!-- Logi -->
+    <div id="logs-container" class="logs-container" style="display:none;">
+      <h3>Logi:</h3>
+      <ul id="logs"></ul>
+    </div>
+
+    <!-- Wyniki wyszukiwania -->
+    <div id="result-container" class="result-container">
+      <h3>Wynik wyszukiwania:</h3>
+      <pre id="result"></pre>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
