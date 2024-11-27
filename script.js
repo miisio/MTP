@@ -1,14 +1,12 @@
-// Zbiór danych (do symulacji)
-let peopleDB = [];
-let vehicleDB = [];
-let logs = [];
+// Zbiór danych (przechowywanie w localStorage)
+let peopleDB = JSON.parse(localStorage.getItem('peopleDB')) || [];
+let vehicleDB = JSON.parse(localStorage.getItem('vehicleDB')) || [];
+let logs = JSON.parse(localStorage.getItem('logs')) || [];
 
 function showSearch(type) {
-  // Ukrywa wszystkie formularze wyszukiwania
   document.getElementById("people-search").style.display = "none";
   document.getElementById("vehicle-search").style.display = "none";
 
-  // Wyświetla odpowiedni formularz
   if (type === "people") {
     document.getElementById("people-search").style.display = "block";
   } else if (type === "vehicle") {
@@ -17,11 +15,9 @@ function showSearch(type) {
 }
 
 function showAdd(type) {
-  // Ukrywa wszystkie formularze dodawania
   document.getElementById("add-person").style.display = "none";
   document.getElementById("add-vehicle").style.display = "none";
 
-  // Wyświetla odpowiedni formularz dodawania
   if (type === "people") {
     document.getElementById("add-person").style.display = "block";
   } else if (type === "vehicle") {
@@ -30,7 +26,6 @@ function showAdd(type) {
 }
 
 function showLogs() {
-  // Wyświetlanie logów
   document.getElementById("logs-container").style.display = "block";
   const logList = document.getElementById("logs");
   logList.innerHTML = "";
@@ -44,9 +39,12 @@ function showLogs() {
 function addPerson() {
   const name = document.getElementById("new-person-name").value;
   const id = document.getElementById("new-person-id").value;
+  
   if (name && id) {
     peopleDB.push({ name, id });
     logs.push(`Dodano osobę: ${name}, ID: ${id}`);
+    localStorage.setItem('peopleDB', JSON.stringify(peopleDB));
+    localStorage.setItem('logs', JSON.stringify(logs));
     alert("Osoba dodana!");
     document.getElementById("new-person-name").value = '';
     document.getElementById("new-person-id").value = '';
@@ -56,9 +54,12 @@ function addPerson() {
 function addVehicle() {
   const id = document.getElementById("new-vehicle-id").value;
   const owner = document.getElementById("new-vehicle-owner").value;
+  
   if (id && owner) {
     vehicleDB.push({ id, owner });
     logs.push(`Dodano pojazd: ${id}, Właściciel: ${owner}`);
+    localStorage.setItem('vehicleDB', JSON.stringify(vehicleDB));
+    localStorage.setItem('logs', JSON.stringify(logs));
     alert("Pojazd dodany!");
     document.getElementById("new-vehicle-id").value = '';
     document.getElementById("new-vehicle-owner").value = '';
